@@ -1,0 +1,146 @@
+.drop-zone {
+    border: 2px dashed gray;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    background-color: #f8f9fa;
+    transition: background-color 0.3s;
+    margin: 10px auto;
+    max-width: 400px;
+}
+.drop-zone.dragover {
+    background-color: #e2e6ea;
+}
+.drop-zone p {
+    margin: 10px 0;
+    color: #333;
+}
+.drop-zone input[type="file"] {
+    display: none;
+}
+button.drop-zone-btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+button.drop-zone-btn:hover {
+    background-color: green;
+}
+body { background-color: lightgray; }
+
+.subheader {
+    position: absolute;
+    top: -10px;
+    left: 0px;
+    padding: 5px 10px;
+    font-size: 14px;
+    transform: translateY(-50%);
+}
+
+@media (max-width: 600px) {
+    .block {
+        flex: 1 1 100%;
+    }
+    .subheader {
+        font-size: 12px;
+        padding: 4px 8px;
+    }
+}
+/* Контейнер сетки */
+.grid-container {
+max-width: 1200px;
+margin: 0 auto;
+padding: 20px;
+display: grid;
+grid-template-columns: 60% 40%; /* Верхние блоки: 60% и 40% */
+gap: 20px;
+grid-template-areas: 
+"top-left top-right"
+"block-1 block-1"
+"block-2 block-2"
+"block-3 block-3";
+}
+
+/* Стили для блоков */
+.block {
+position: relative;
+background-color: #f8f9fa;
+border: 1px solid #ddd;
+border-radius: 8px;
+padding: 10px 20px 20px;
+box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+margin-top: 20px;
+}
+
+/* Верхние блоки */
+.top-block.left { grid-area: top-left; }
+.top-block.right { grid-area: top-right; }
+
+/* Нижние блоки на всю ширину */
+.full-width {
+grid-column: 1 / -1; /* Занимают всю ширину */
+}
+
+/* Фиксированные высоты для нижних блоков */
+.block-1 { /* height: 150px; */ }
+.block-2 { /* height: 400px; */ }
+.block-3 { /* height: 250px; */ }
+
+/* Содержимое блока */
+.content {
+margin-top: 10px;
+}
+
+/* Контейнер для кнопки и drop-зоны */
+.inline-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: normal;
+    gap: 20px;
+}
+
+/* Адаптивность */
+@media (max-width: 600px)
+{
+    .grid-container {
+    grid-template-columns: 1fr; /* Один столбец на мобильных */
+    grid-template-areas: 
+        "top-left"
+        "top-right"
+        "block-1"
+        "block-2"
+        "block-3";
+    }
+    .subheader {
+    font-size: 12px;
+    padding: 4px 8px;
+    }
+    .inline-container {
+        flex-direction: column;
+        align-items: stretch;
+    }
+}
+.inline { flex: 0 0 auto; }
+.drop-zone-wrapper {
+    flex: 0 0 auto;
+}
+
+.block.top-block.right table { width: 100%; }
+.block.top-block.right table td { text-align: center; }
+span.delete-btn { cursor: pointer; }
+table.dataTable td, table.dataTable th {
+    border-right: 1px solid #ccc; /* Цвет и стиль границы */
+}
+table.dataTable th { background-color: #ddd;}
+table.dataTable tr td,  table.dataTable tr th { text-align:  left !important;}
+
+.top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
