@@ -7,7 +7,7 @@
 ```
 select `t`.`Account` AS `Banks`,`t`.`Currency` AS `Currency`,0 AS `StartingBalance`,coalesce(sum(`t`.`Amount`),0) AS `EndBalance`,coalesce((sum(`t`.`Amount`) * coalesce(min(`er`.`RateToCHF`),1)),0) AS `EndBalanceCHF` from (`transactions` `t` left join `exchange_rates` `er` on((`t`.`Currency` = `er`.`Currency`))) group by `t`.`Account`,`t`.`Currency`,`er`.`RateToCHF`
 ```
-даёт возможность визуально видеть данные
+даёт возможность визуализировать данные
 
 ```
 -- --------------------------------------------------------
