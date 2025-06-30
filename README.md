@@ -4,11 +4,12 @@
 Итак, таблицы:
 
 Представление banks
-
+```
 select `t`.`Account` AS `Banks`,`t`.`Currency` AS `Currency`,0 AS `StartingBalance`,coalesce(sum(`t`.`Amount`),0) AS `EndBalance`,coalesce((sum(`t`.`Amount`) * coalesce(min(`er`.`RateToCHF`),1)),0) AS `EndBalanceCHF` from (`transactions` `t` left join `exchange_rates` `er` on((`t`.`Currency` = `er`.`Currency`))) group by `t`.`Account`,`t`.`Currency`,`er`.`RateToCHF`
-
+```
 даёт возможность визуально видеть данные
 
+```
 -- --------------------------------------------------------
 -- Хост:                         127.0.0.1
 -- Версия сервера:               5.7.33 - MySQL Community Server (GPL)
@@ -45,11 +46,12 @@ INSERT INTO `exchange_rates` (`id`, `Currency`, `RateToCHF`) VALUES
 /*!40014 SET FOREIGN_KEY_CHECKS=IFNULL(@OLD_FOREIGN_KEY_CHECKS, 1) */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40111 SET SQL_NOTES=IFNULL(@OLD_SQL_NOTES, 1) */;
-
+```
 Для загрузки данных по валютам используется 2 источника. Склоняюсь к использованию в SQL, т.к. он даёт больше мобильности.
 Загружаем данные с сайта в JS (по крону), и автоматически перекидываем данные в эту таблицу (тут не реализовано)
 
 И таблица транзакций:
+```
 CREATE TABLE `transactions` (
 	`id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
 	`Account` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_unicode_ci',
@@ -64,7 +66,7 @@ COLLATE='utf8mb4_unicode_ci'
 ENGINE=InnoDB
 AUTO_INCREMENT=536
 ;
-
+```
 
 
 
